@@ -118,7 +118,8 @@ class BcAlert:
         self.msg_interval = message_intervall  # Seconds
 
     def start(self, update: Update, context: CallbackContext) -> None:
-        logging.debug("Message: ", update.message.text)
+        log_msg = f"Message from {update.message.from_user.name}: {update.message.txt}"
+        logging.debug(log_msg)
         update.message.reply_text("/info für infos eingeben.")
 
     def remove_job_if_exists(self, name, context):
@@ -289,7 +290,7 @@ Steuerung über:
 
 
 def main():
-    bc_tracker = BcAlert(TOKEN)
+    BcAlert(TOKEN)
 
 
 if __name__ == "__main__":
