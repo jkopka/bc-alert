@@ -1,0 +1,3 @@
+Babel
+python-telegram-bot
+pycoingecko
