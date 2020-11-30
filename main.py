@@ -1,6 +1,6 @@
 import datetime
 
-from babel.numbers import format_currency
+from babel.numbers import format_currency, get_currency_symbol
 from pycoingecko import CoinGeckoAPI
 from telegram.ext import (
     Updater,
@@ -212,7 +212,14 @@ class BcAlert:
                 msg = "Fehler. Schon /set geschickt?"
         else:
             if len(update.message.text.split()) == 2:
-                users[user_id].down = int(update.message.text.split()[1])
+                limit = update.message.text.split()[1]
+                if get_currency_symbol(CURRENCY) in limit:
+                    if users[user_id].amount:
+                        down_limit = int(limit.replace(get_currency_symbol(CURRENCY),""))/users[user_id].amount
+                    print("Umgerechnet: ",down_limit)
+                else:
+                    down_limit = int(limit)
+                users[user_id].down = down_limit
                 if users[user_id].down == 0:
                     msg = "Down-Limit gelöscht."
                 else:
@@ -231,7 +238,14 @@ class BcAlert:
                 msg = "Fehler. Schon /set geschickt?"
         else:
             if len(update.message.text.split()) == 2:
-                users[user_id].up = int(update.message.text.split()[1])
+                limit = update.message.text.split()[1]
+                if get_currency_symbol(CURRENCY) in limit:
+                    if users[user_id].amount:
+                        up_limit = int(limit.replace(get_currency_symbol(CURRENCY),""))/users[user_id].amount
+                    print("Umgerechnet: ",up_limit)
+                else:
+                    up_limit = int(limit)
+                users[user_id].up = up_limit
                 if users[user_id].up == 0:
                     msg = "Up-Limit gelöscht."
                 else:
