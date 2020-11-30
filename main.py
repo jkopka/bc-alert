@@ -118,7 +118,7 @@ class BcAlert:
         self.msg_interval = message_intervall  # Seconds
 
     def start(self, update: Update, context: CallbackContext) -> None:
-        log_msg = f"Message from {update.message.from_user.name}: {update.message.txt}"
+        log_msg = f"Message from {update.message.from_user.name}: {update.message.text}"
         logging.debug(log_msg)
         update.message.reply_text("/info für infos eingeben.")
 
