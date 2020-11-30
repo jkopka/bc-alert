@@ -282,8 +282,8 @@ Dieser Bot schickt in regelmäßigen Abständen den aktuellen Bitcoinkurs.
 Steuerung über:
 /set - starten
 /unset - stoppen
-/down <zahl> - unteres Limit setzen, ab dem der Kurs geschickt werden soll.
-/up <zahl> - oberes Limit setzen, ab dem der Kurs geschickt werden soll.
+/down <zahl> - unteres Limit setzen, ab dem der Kurs geschickt werden soll. Mit /up <zahl>€ kann das Limit in der Währung angegeben weden.
+/up <zahl> - oberes Limit setzen, ab dem der Kurs geschickt werden soll. Mit /down <zahl>€ kann das Limit in der Währung angegeben weden.
 /now - aktuellen Kurs schicken
 /amount <zahl> - Anzahl an BitCoins setzen. Beispiel: 0.004"""
         update.message.reply_text(msg)
